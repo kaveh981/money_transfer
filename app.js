@@ -5,6 +5,34 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//Loading postgresSql module
+var pgp = require('pg-promise')();
+
+//Create connection object 
+var connectionObj = {
+    host: 'elmer-01.db.elephantsql.com',
+    port: 5432,
+    database: 'nbexdqxv',
+    user: 'nbexdqxv',
+    password: 'eUMJBUyhIQSF5LTdduN8oZalgInf0tov'
+};
+//Getting postgres database instance
+var dbMT = pgp(connectionObj);
+
+
+
+dbMT.any("CREATE TABLE customer(ID INT PRIMARY KEY NOT NULL,FirstName TEXT NOT NULL,LastName TEXT NOT NULL,DOB DATE,Age INT,Address CHAR(50));")
+    .then(function (data) {
+    console.log("DATA:", data); // print data;
+})
+    .catch(function (error) {
+    console.log("ERROR:", error); // print the error;
+}); 
+
+
+
+
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
