@@ -4,44 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-//Loading postgresSql module
-var pgp = require('pg-promise')();
-
-//Create connection object 
-var connectionObj = {
-    host: 'elmer-01.db.elephantsql.com',
-    port: 5432,
-    database: 'nbexdqxv',
-    user: 'nbexdqxv',
-    password: 'eUMJBUyhIQSF5LTdduN8oZalgInf0tov'
-};
-//Getting postgres database instance
-var dbMT = pgp(connectionObj);
-
-
-
-dbMT.any("CREATE TABLE customer(ID INT PRIMARY KEY NOT NULL,FirstName TEXT NOT NULL,LastName TEXT NOT NULL,DOB DATE,Age INT,Address CHAR(50));")
-    .then(function (data) {
-    console.log("DATA:", data); // print data;
-})
-    .catch(function (error) {
-    console.log("ERROR:", error); // print the error;
-}); 
-
-
-
-
-
+var dbMT = require('./models/database.js').repo;
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
+//app configuration
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+
+// use middlewares
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -50,8 +25,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//give access to database into all requests
+app.use(function (req, res, next) {
+    req.database = dbMT;
+    next();
+});
+
+
+//routes
 app.use('/', routes);
 app.use('/users', users);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
