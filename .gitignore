@@ -10,3 +10,7 @@ node_modules/
 /money_transfer.njsproj
 /money_transfer.sln
 /obj/Debug/money_transfer.njsprojResolveAssemblyReference.cache
+.tscache
+.baseDir.js
+typings
+src/.baseDir.ts
