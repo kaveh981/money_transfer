@@ -1,0 +1,2 @@
+F:\money_transfer\money_transfer\bin\Microsoft.NodejsTools.WebRole.dll
+F:\money_transfer\money_transfer\obj\Debug\money_transfer.njsprojResolveAssemblyReference.cache
