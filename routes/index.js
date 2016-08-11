@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
+"use strict";
+var Route;
+(function (Route) {
+    class Index {
+        index(req, res, next) {
+            res.render("index");
+        }
+    }
+    Route.Index = Index;
+})(Route || (Route = {}));
+module.exports = Route;

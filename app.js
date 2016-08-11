@@ -2,11 +2,12 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const path = require("path");
+const indexRoute = require("./routes/index");
 class Server {
     constructor() {
         this.app = express();
         this.config();
-    
+        this.routes();
     }
     static bootstrap() {
         return new Server();
@@ -24,7 +25,13 @@ class Server {
             next(err);
         });
     }
-
+    routes() {
+        let router;
+        router = express.Router();
+        var index = new indexRoute.Index();
+        router.get("/", index.index.bind(index.index));
+        this.app.use(router);
+    }
 }
 var server = Server.bootstrap();
 module.exports = server.app;
