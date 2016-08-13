@@ -3,3 +3,5 @@ development.json
 production.json
 node_modules
 node_modules/
+/.ntvs_analysis.dat
+/.vs/money_transfer/v14/.suo
