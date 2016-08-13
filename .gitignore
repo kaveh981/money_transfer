@@ -3,10 +3,6 @@ development.json
 production.json
 node_modules
 node_modules/
-/.vs/money_transfer/v14/.suo
-/bin/Microsoft.NodejsTools.WebRole.dll
-/obj/Debug/money_transfer.njsproj.FileListAbsolute.txt
+
 /.ntvs_analysis.dat
 /money_transfer.njsproj
-/money_transfer.sln
-/obj/Debug/money_transfer.njsprojResolveAssemblyReference.cache
