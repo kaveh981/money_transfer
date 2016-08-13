@@ -5,4 +5,4 @@ node_modules
 node_modules/
 
 /.ntvs_analysis.dat
-/money_transfer.njsproj
+/.vs/money_transfer/v14/.suo
