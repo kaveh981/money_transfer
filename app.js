@@ -4,9 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var dbMT = require('./models/database.js').repo;
-var routes = require('./routes/index');
-var users = require('./routes/users');
+
+
+// we'll create our routes here
+
+// get an instance of router
+var router = require('./routes/baseRoute.js');
 
 var app = express();
 
@@ -25,14 +28,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//give access to database into all requests
-app.use(function (req, res, next) {
-    req.database = dbMT;
-    next();
-});
-
-
-//routes
 app.use('/', routes);
 app.use('/users', users);
 
