@@ -4,7 +4,9 @@
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as path from "path";
-
+import * as  favicon from "serve-favicon";
+import * as  logger from "morgan";
+import * as  cookieParser from "cookie-parser";
 import * as indexRoute from "./routes/index";
 
 /**
@@ -56,8 +58,12 @@ class Server {
     this.app.set("views", path.join(__dirname, "views"));
     this.app.set("view engine", "jade");
 
+      // uncomment after placing your favicon in /public
+      // this.app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+
     //mount logger
-    //this.app.use(logger("dev"));
+    this.app.use(logger("dev"));
 
     //mount json form parser
     this.app.use(bodyParser.json());
